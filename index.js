@@ -109,14 +109,11 @@ class SinglyLinkedList {
     let isCyclical = false;
     let slowWalker = this.head;
     let fastWalker = this.head;
-    fastWalker = fastWalker.next;//Headstart!
 
-    while(fastWalker.next){
-      fastWalker = fastWalker.next;
+    while(fastWalker && fastWalker.next){
       slowWalker = slowWalker.next;
-      let slowWalkerProgress = this.getIndexOfNode(slowWalker);
-      let fastWalkerProgress = this.getIndexOfNode(fastWalker);
-      if(slowWalkerProgress > fastWalkerProgress){
+      fastWalker = fastWalker.next.next;
+      if(slowWalker === fastWalker){
         isCyclical = true;
         break;
       }
@@ -132,7 +129,7 @@ class SinglyLinkedList {
     while(currentNode.next){
       index++;
       currentNode = currentNode.next;
-      if(currentNode.data === node.data){
+      if(currentNode === node){
         result = index;
         break;
       }

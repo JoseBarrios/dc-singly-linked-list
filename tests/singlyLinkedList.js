@@ -37,12 +37,6 @@ describe('SinglyLinkedList', function() {
   });
 
 
-  describe('#getIndexOfNode()', function() {
-    it('should get the index of the specified node', function() {
-      assert.deepStrictEqual(list.getIndexOfNode(node5), 5);
-    });
-  });
-
 
   describe('#getNodeAtIndex()', function() {
     it('should get the node at the indicated index', function() {
@@ -72,13 +66,21 @@ describe('SinglyLinkedList', function() {
     });
   });
 
+  describe('#getIndexOfNode()', function() {
+    it('should get the index of the specified node', function() {
+      assert.deepStrictEqual(list.getIndexOfNode(list.getNodeAtIndex(5)), 5);
+    });
+  });
+
   describe('#containsCycle()', function() {
     it('should return true if theres a cyclical dependency', function() {
       assert.deepStrictEqual(list.containsCycle(), false);
       list.getNodeAtIndex(5).next = list.getNodeAtIndex(3);
       assert.deepStrictEqual(list.containsCycle(), true);
+      list.getNodeAtIndex(5).next = list.getNodeAtIndex(6);
     });
   });
+
 
 });
 
