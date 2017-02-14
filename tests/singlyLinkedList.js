@@ -29,11 +29,17 @@ describe('SinglyLinkedList', function() {
     });
   });
 
-
   describe('#search()', function() {
     it('should get the node with the indicated value', function() {
       assert.deepStrictEqual(list.search(5), list.getNodeAtIndex(5));
       assert.deepStrictEqual(list.search(6), list.getNodeAtIndex(6));
+    });
+  });
+
+
+  describe('#getIndexOfNode()', function() {
+    it('should get the index of the specified node', function() {
+      assert.deepStrictEqual(list.getIndexOfNode(node5), 5);
     });
   });
 
@@ -66,7 +72,13 @@ describe('SinglyLinkedList', function() {
     });
   });
 
-
+  describe('#containsCycle()', function() {
+    it('should return true if theres a cyclical dependency', function() {
+      assert.deepStrictEqual(list.containsCycle(), false);
+      list.getNodeAtIndex(5).next = list.getNodeAtIndex(3);
+      assert.deepStrictEqual(list.containsCycle(), true);
+    });
+  });
 
 });
 
