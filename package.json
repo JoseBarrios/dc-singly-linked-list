@@ -1,6 +1,6 @@
 {
   "name": "singlylinkedlist",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Singly Linked List data structure for Javascript",
   "main": "index.js",
   "scripts": {
