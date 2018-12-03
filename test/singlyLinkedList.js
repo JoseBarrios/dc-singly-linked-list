@@ -9,16 +9,15 @@ list.insert(1);
 list.insert(2);
 list.insert(3);
 
-
 describe("SinglyLinkedList", function () {
 
   describe("#insert()", function () {
     it("should add a node to the list", function () {
       let list = new SinglyLinkedList()
-      assert.deepStrictEqual(list.insert(0), list.getNodeAtIndex(list.length));
-      assert.deepStrictEqual(list.insert(1), list.getNodeAtIndex(list.length));
-      assert.deepStrictEqual(list.insert(2), list.getNodeAtIndex(list.length));
-      assert.deepStrictEqual(list.insert(3), list.getNodeAtIndex(list.length));
+      assert.deepStrictEqual(list.insert(0), list.getNodeAtIndex(list.length-1));
+      assert.deepStrictEqual(list.insert(1), list.getNodeAtIndex(list.length-1));
+      assert.deepStrictEqual(list.insert(2), list.getNodeAtIndex(list.length-1));
+      assert.deepStrictEqual(list.insert(3), list.getNodeAtIndex(list.length-1));
       assert.deepStrictEqual(list.insert("A", 1), list.getNodeAtIndex(1));
       assert.deepStrictEqual(list.insert("B", 3), list.getNodeAtIndex(3));
     });
@@ -68,6 +67,7 @@ describe("SinglyLinkedList", function () {
 
   describe("#containsCycle()", function () {
     it("should return true if theres a cyclical dependency", function () {
+      let list = new SinglyLinkedList([0, 1, 2, 3, 4, 5, 6, 7])
       assert.deepStrictEqual(list.containsCycle(), false);
       list.getNodeAtIndex(5).next = list.getNodeAtIndex(3);
       assert.deepStrictEqual(list.containsCycle(), true);
@@ -94,7 +94,7 @@ describe("SinglyLinkedList", function () {
       list.insert(1);
       list.insert(2);
       list.insert(3);
-      assert.deepStrictEqual(list.length, 3);
+      assert.deepStrictEqual(list.length, 4);
     });
   });
 

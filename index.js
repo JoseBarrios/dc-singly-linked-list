@@ -17,68 +17,68 @@ class SinglyLinkedListNodeDataController {
 }
 
 class SinglyLinkedListDataController {
-
-  constructor(model){
+  constructor(model) {
     this.head = null;
     this.model = model;
-    this.type = "singly-linked-list"
+    this.type = "singly-linked-list";
   }
 
-  get model(){
+  get model() {
     const nodes = [];
     let currentNode = this.head;
     nodes.push(currentNode.data);
-    while(currentNode.next){
+    while (currentNode.next) {
       currentNode = currentNode.next;
       nodes.push(currentNode.data);
     }
     return nodes;
   }
 
-  set model(data){
+  set model(data) {
     data = data || [];
-    data.forEach(datum => {this.insert(datum)});
+    data.forEach(datum => {
+      this.insert(datum);
+    });
   }
 
-  insert(data, index){
+  insert(data, index) {
     index = index || null;
     let newNode = new SinglyLinkedListNodeDataController(data);
     let currentNode = this.head;
 
     //Empty list
-    if(!currentNode){
-      this._insertHead(newNode)
+    if (!currentNode) {
+      this._insertHead(newNode);
     }
-    //Has index 
-    else if(index){
+    //Has index
+    else if (index) {
       this._insert(newNode, index);
-    }
-    else{ // insert at the end
+    } else {
+      // insert at the end
       this._insertTail(newNode);
     }
 
     return newNode;
   }
 
-  _insertHead(node){
+  _insertHead(node) {
     this.head = node;
   }
 
-  _insert(node, index){
+  _insert(node, index) {
     const previous = this.getNodeAtIndex(index - 1);
     const nextNode = previous.next;
     previous.next = node;
     node.next = nextNode;
   }
 
-  _insertTail(node){
+  _insertTail(node) {
     const lastNode = this.getLastNode();
     lastNode.next = node;
   }
 
-
-  deleteAtIndex(index){
-    let prev = this.getNodeAtIndex(index-1);
+  deleteAtIndex(index) {
+    let prev = this.getNodeAtIndex(index - 1);
     let target = this.getNodeAtIndex(index);
     let newNext = target.next;
     prev.next = newNext;
@@ -86,16 +86,16 @@ class SinglyLinkedListDataController {
     return target;
   }
 
-  search(targetData){
+  search(targetData) {
     let targetNode = null;
-    if(this.head.data === targetData){
+    if (this.head.data === targetData) {
       return this.head;
     }
 
     let currentNode = this.head;
-    while(currentNode.next){
+    while (currentNode.next) {
       currentNode = currentNode.next;
-      if(currentNode.data === targetData){
+      if (currentNode.data === targetData) {
         targetNode = currentNode;
         break;
       }
@@ -103,81 +103,78 @@ class SinglyLinkedListDataController {
     return targetNode;
   }
 
-
-
-
-
   //HELPERS
-  getLastNode(){
+  getLastNode() {
     let currentNode = this.head;
-    while(currentNode.next){ currentNode = currentNode.next; }
+    while (currentNode.next) {
+      currentNode = currentNode.next;
+    }
     return currentNode;
   }
 
-  get size(){
-    if(this.head === null) return 0;
+  get size() {
+    if (this.head === null) return 0;
     let size = 1;
     let currentNode = this.head;
-    while(currentNode.next){
+    while (currentNode.next) {
       currentNode = currentNode.next;
       size++;
     }
     return size;
   }
 
-  get length(){
-    let length = 0;
-    let currentNode = this.head;
-    while(currentNode.next){
-      currentNode = currentNode.next;
-      length++;
-    }
-    return length;
+  get length() {
+    return this.size;
   }
 
+  getNodeAtIndex(targetIndex) {
+    if(!this.head) return null;
+    if(targetIndex === 0) return this.head;
 
-  getNodeAtIndex(i){
     let currentNode = this.head;
-    while(currentNode.next && i > 0){
-      currentNode = currentNode.next;
-      i--;
+    for (let i = 0; i < targetIndex; i++) {
+      currentNode = currentNode.next ? currentNode.next : null;
     }
     return currentNode;
   }
 
-  containsCycle(){
+  containsCycle() {
     let isCyclical = false;
     let slowWalker = this.head;
     let fastWalker = this.head;
 
-    while(fastWalker && fastWalker.next){
+    while (fastWalker && fastWalker.next) {
       slowWalker = slowWalker.next;
       fastWalker = fastWalker.next.next;
-      if(slowWalker === fastWalker){
+      if (slowWalker === fastWalker) {
         isCyclical = true;
         break;
       }
     }
-    return isCyclical
+    return isCyclical;
   }
 
   //Maybe merge with search?
-  getIndexOfNode(node){
+  getIndexOfNode(node) {
     let index = 0;
     let result = null;
     let currentNode = this.head;
-    while(currentNode.next){
+    while (currentNode.next) {
       index++;
       currentNode = currentNode.next;
-      if(currentNode === node){
+      if (currentNode === node) {
         result = index;
         break;
       }
     }
     return result;
   }
-
 }
+
+
+
+
+
 
 module.exports = SinglyLinkedListDataController;
 
