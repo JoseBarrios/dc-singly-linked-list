@@ -1,9 +1,7 @@
 module.exports = {
-  "globals": {
-    "it": true,
-    "describe": true
-  },
   "env": {
+    "mocha": true,
+    "browser": true,
     "node": true,
     "es6": true
   },

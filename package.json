@@ -1,24 +1,28 @@
 {
-  "name": "dc-singly-linked-list",
-  "version": "0.0.2",
-  "description": "Singly Linked List data structure for Javascript",
-  "main": "index.js",
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JoseBarrios/dc-singly-linked-list.git"
-  },
-  "author": "JoseBarrios",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JoseBarrios/dc-singly-linked-list/issues"
-  },
-  "homepage": "https://github.com/JoseBarrios/dc-singly-linked-list#readme",
-  "devDependencies": {
-    "eslint": "^5.9.0",
-    "mocha": "^3.2.0"
-  },
-  "dependencies": {}
+    "author": "JoseBarrios",
+    "browser": "browser.js",
+    "bugs": {
+        "url": "https://github.com/JoseBarrios/dc-singly-linked-list/issues"
+    },
+    "dependencies": {},
+    "description": "Singly Linked List data structure for Javascript",
+    "devDependencies": {
+        "eslint": "^5.9.0",
+        "mocha": "^3.2.0",
+        "webpack": "^4.26.1",
+        "webpack-cli": "^3.1.2"
+    },
+    "homepage": "https://github.com/JoseBarrios/dc-singly-linked-list#readme",
+    "license": "MIT",
+    "main": "index.js",
+    "name": "dc-singly-linked-list",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JoseBarrios/dc-singly-linked-list.git"
+    },
+    "scripts": {
+        "test": "./node_modules/mocha/bin/mocha tests/",
+        "browser": "./node_modules/webpack/bin/webpack.js"
+    },
+    "version": "0.0.2"
 }
