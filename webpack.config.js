@@ -1,7 +1,8 @@
 const config = {
   entry: "./index.js",
   output: {
-    filename: "index.browser.js"
+    library: "SinglyLinkedListDataController",
+    filename: "browser.js"
   },
 };
 
