@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JoseBarrios/SinglyLinkedList#readme",
   "devDependencies": {
+    "eslint": "^5.9.0",
     "mocha": "^3.2.0"
   },
   "dependencies": {}

@@ -1,52 +1,79 @@
-'use strict'
+"use strict"
 
+class SinglyLinkedListNode {
+
+  constructor(data){
+    this.type = "singly-linked-list-node";
+    this.model = {};
+    this.model.data = data;
+    this.model.next = new WeakMap();
+  }
+
+  get data(){ return this.model.data; }
+  set data(value){ this.model.data = value;}
+
+  get next(){ return this.model.next.get(this); }
+  set next(node){ this.model.next.set(this, node); }
+}
 
 class SinglyLinkedList {
 
-  static Node(data){
-    let node = {};
-    node.data = data || null;
-    node.next = null;
-    return node;
+  constructor(model){
+    this.head = null;
+    this.model = model;
+    this.type = "singly-linked-list"
   }
 
-
-  constructor(node){
-    this.head = node || SinglyLinkedList.Node(0);
-    this.length = 0;
+  get model(){
+    const nodes = [];
+    let currentNode = this.head;
+    nodes.push(currentNode.data);
+    while(currentNode.next){
+      currentNode = currentNode.next;
+      nodes.push(currentNode.data);
+    }
+    return nodes;
   }
 
-
+  set model(data){
+    data = data || [];
+    data.forEach(datum => {this.insert(datum)});
+  }
 
   insert(data, index){
     index = index || null;
-
-    let newNode = SinglyLinkedList.Node(data);
+    let newNode = new SinglyLinkedListNode(data);
     let currentNode = this.head;
+
     //Empty list
     if(!currentNode){
-      this.head = newNode;
-      this.length++;
+      this._insertHead(newNode)
     }
-    //Non-empty list
+    //Has index 
     else if(index){
-      let previous = this.getNodeAtIndex(index-1)
-      let nextNode = previous.next;
-      previous.next = newNode;
-      newNode.next = nextNode;
-      this.length++;
+      this._insert(newNode, index);
     }
-    else{
-      let lastNode = this.getLastNode();
-      lastNode.next = newNode;
-      this.length++;
+    else{ // insert at the end
+      this._insertTail(newNode);
     }
 
     return newNode;
   }
 
-  print(){
-    console.log(JSON.stringify(this, null, ' '))
+  _insertHead(node){
+    this.head = node;
+  }
+
+  _insert(node, index){
+    const previous = this.getNodeAtIndex(index - 1);
+    const nextNode = previous.next;
+    previous.next = node;
+    node.next = nextNode;
+  }
+
+  _insertTail(node){
+    const lastNode = this.getLastNode();
+    lastNode.next = node;
   }
 
 
@@ -56,14 +83,15 @@ class SinglyLinkedList {
     let newNext = target.next;
     prev.next = newNext;
     target.next = null;
-    this.length--;
     return target;
   }
 
-
-
   search(targetData){
     let targetNode = null;
+    if(this.head.data === targetData){
+      return this.head;
+    }
+
     let currentNode = this.head;
     while(currentNode.next){
       currentNode = currentNode.next;
@@ -86,7 +114,18 @@ class SinglyLinkedList {
     return currentNode;
   }
 
-  getLength(){
+  get size(){
+    if(this.head === null) return 0;
+    let size = 1;
+    let currentNode = this.head;
+    while(currentNode.next){
+      currentNode = currentNode.next;
+      size++;
+    }
+    return size;
+  }
+
+  get length(){
     let length = 0;
     let currentNode = this.head;
     while(currentNode.next){
@@ -95,6 +134,7 @@ class SinglyLinkedList {
     }
     return length;
   }
+
 
   getNodeAtIndex(i){
     let currentNode = this.head;
@@ -136,8 +176,6 @@ class SinglyLinkedList {
     }
     return result;
   }
-
-
 
 }
 
