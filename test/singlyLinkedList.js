@@ -65,12 +65,12 @@ describe("SinglyLinkedList", function () {
     });
   });
 
-  describe("#containsCycle()", function () {
+  describe("list.isCircular", function () {
     it("should return true if theres a cyclical dependency", function () {
       let list = new SinglyLinkedList([0, 1, 2, 3, 4, 5, 6, 7])
-      assert.deepStrictEqual(list.containsCycle(), false);
+      assert.deepStrictEqual(list.isCircular, false);
       list.getNodeAtIndex(5).next = list.getNodeAtIndex(3);
-      assert.deepStrictEqual(list.containsCycle(), true);
+      assert.deepStrictEqual(list.isCircular, true);
       list.getNodeAtIndex(5).next = list.getNodeAtIndex(6);
     });
   });

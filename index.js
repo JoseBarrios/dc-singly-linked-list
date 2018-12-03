@@ -138,7 +138,7 @@ class SinglyLinkedListDataController {
     return currentNode;
   }
 
-  containsCycle() {
+  get isCircular() {
     let isCyclical = false;
     let slowWalker = this.head;
     let fastWalker = this.head;
