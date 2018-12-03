@@ -1,6 +1,6 @@
 "use strict"
 
-class SinglyLinkedListNode {
+class SinglyLinkedListNodeDataController {
 
   constructor(data){
     this.type = "singly-linked-list-node";
@@ -16,7 +16,7 @@ class SinglyLinkedListNode {
   set next(node){ this.model.next.set(this, node); }
 }
 
-class SinglyLinkedList {
+class SinglyLinkedListDataController {
 
   constructor(model){
     this.head = null;
@@ -42,7 +42,7 @@ class SinglyLinkedList {
 
   insert(data, index){
     index = index || null;
-    let newNode = new SinglyLinkedListNode(data);
+    let newNode = new SinglyLinkedListNodeDataController(data);
     let currentNode = this.head;
 
     //Empty list
@@ -179,5 +179,5 @@ class SinglyLinkedList {
 
 }
 
-module.exports = SinglyLinkedList;
+module.exports = SinglyLinkedListDataController;
 
