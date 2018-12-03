@@ -1,6 +1,6 @@
 {
-  "name": "singlylinkedlist",
-  "version": "0.2.1",
+  "name": "dc-singly-linked-list",
+  "version": "0.0.1",
   "description": "Singly Linked List data structure for Javascript",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoseBarrios/SinglyLinkedList.git"
+    "url": "git+https://github.com/JoseBarrios/dc-singly-linked-list.git"
   },
   "author": "JoseBarrios",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JoseBarrios/SinglyLinkedList/issues"
+    "url": "https://github.com/JoseBarrios/dc-singly-linked-list/issues"
   },
-  "homepage": "https://github.com/JoseBarrios/SinglyLinkedList#readme",
+  "homepage": "https://github.com/JoseBarrios/dc-singly-linked-list#readme",
   "devDependencies": {
     "eslint": "^5.9.0",
     "mocha": "^3.2.0"
