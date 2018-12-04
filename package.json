@@ -4,7 +4,9 @@
     "bugs": {
         "url": "https://github.com/JoseBarrios/dc-singly-linked-list/issues"
     },
-    "dependencies": {},
+    "dependencies": {
+        "dc-thing": "^0.3.13"
+    },
     "description": "Singly Linked List data structure for Javascript",
     "devDependencies": {
         "eslint": "^5.9.0",
@@ -21,7 +23,7 @@
         "url": "git+https://github.com/JoseBarrios/dc-singly-linked-list.git"
     },
     "scripts": {
-        "test": "./node_modules/mocha/bin/mocha tests/",
+        "test": "./node_modules/mocha/bin/mocha test/",
         "browser": "./node_modules/webpack/bin/webpack.js"
     },
     "version": "0.0.5"

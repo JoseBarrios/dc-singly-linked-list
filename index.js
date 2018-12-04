@@ -1,40 +1,43 @@
 "use strict"
 
-class SinglyLinkedListNodeDataController {
+const ThingDataController = require("dc-thing");
 
-  constructor(data){
+class SinglyLinkedListNodeDataController extends ThingDataController {
+
+  constructor(model){
+    super(model);
     this.type = "singly-linked-list-node";
-    this.model = {};
-    this.model.data = data;
-    this.model.next = new WeakMap();
+
+    const isPlainObject = ThingDataController.isPlainObject(model);
+    this._next = new WeakMap();
+    this.data = isPlainObject? model.data : model;
   }
 
-  get data(){ return this.model.data; }
-  set data(value){ this.model.data = value;}
-
-  get next(){ return this.model.next.get(this); }
-  set next(node){ this.model.next.set(this, node); }
+  get next(){ return this._next.get(this); }
+  set next(node){ this._next.set(this, node); }
 }
 
-class SinglyLinkedListDataController {
+class SinglyLinkedListDataController extends ThingDataController{
+
   constructor(model) {
+    super(model);
     this.head = null;
-    this.model = model;
-    this.type = "singly-linked-list";
+    this.adjacencyList  = model;
+    this.type = "singly-linked-list"
   }
 
-  get model() {
+  get adjacencyList() {
     const nodes = [];
     let currentNode = this.head;
     nodes.push(currentNode.data);
     while (currentNode.next) {
       currentNode = currentNode.next;
-      nodes.push(currentNode.data);
+      nodes.push(currentNode.identifier);
     }
     return nodes;
   }
 
-  set model(data) {
+  set adjacencyList(data) {
     data = data || [];
     data.forEach(datum => {
       this.insert(datum);
@@ -88,7 +91,7 @@ class SinglyLinkedListDataController {
 
   search(targetData) {
     let targetNode = null;
-    if (this.head.data === targetData) {
+    if (this.head && this.head.data === targetData) {
       return this.head;
     }
 

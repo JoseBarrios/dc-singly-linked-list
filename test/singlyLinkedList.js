@@ -3,13 +3,14 @@
 var SinglyLinkedList = require("../index.js");
 var assert = require("assert");
 
-let list = new SinglyLinkedList()
-list.insert(0);
-list.insert(1);
-list.insert(2);
-list.insert(3);
-
 describe("SinglyLinkedList", function () {
+
+  describe("constructor", function () {
+    it("should create a linked list from an array", function () {
+      let list = new SinglyLinkedList([0, 1, 2, 3, 4])
+      assert.deepStrictEqual(list.adjacencyList, [0, "3", "4", "5", "6"]);
+    });
+  });
 
   describe("#insert()", function () {
     it("should add a node to the list", function () {
@@ -25,6 +26,12 @@ describe("SinglyLinkedList", function () {
 
   describe("#search()", function () {
     it("should get the node with the indicated value", function () {
+      let list = new SinglyLinkedList()
+      list.insert(0);
+      list.insert(1);
+      list.insert(2);
+      list.insert(3);
+
       assert.deepStrictEqual(list.search(0), list.getNodeAtIndex(0));
       assert.deepStrictEqual(list.search(1), list.getNodeAtIndex(1));
       assert.deepStrictEqual(list.search(2), list.getNodeAtIndex(2));
@@ -36,6 +43,12 @@ describe("SinglyLinkedList", function () {
 
   describe("#getNodeAtIndex()", function () {
     it("should get the node at the indicated index", function () {
+      let list = new SinglyLinkedList()
+      list.insert(0);
+      list.insert(1);
+      list.insert(2);
+      list.insert(3);
+
       assert.deepStrictEqual(list.getNodeAtIndex(3), list.search(3));
     });
   });
@@ -98,26 +111,18 @@ describe("SinglyLinkedList", function () {
     });
   });
 
-  describe("list.model", function () {
+  describe("list.adjacencyList", function () {
     it("should return an array representation of the list", function () {
       let list = new SinglyLinkedList()
-      list.insert(0);
-      list.insert(1);
-      list.insert(2);
-      list.insert(3);
-      assert.deepStrictEqual(list.model, [0, 1, 2, 3]);
+      const data1 = {identifier:1, data: "one"};
+      const data2 = {identifier:2, data: "two"};
+      const data3 = {identifier:3, data: "three"};
+      const data4 = {identifier:4, data: "four"};
+      list.insert(data1);
+      list.insert(data2);
+      list.insert(data3);
+      list.insert(data4);
+      assert.deepStrictEqual(list.adjacencyList, [list.head.data, 2, 3, 4]);
     });
   });
-
-  describe("constructor", function () {
-    it("should create a linked list from an array", function () {
-      let list = new SinglyLinkedList([0, 1, 2, 3, 4])
-      assert.deepStrictEqual(list.model, [0, 1, 2, 3, 4]);
-    });
-  });
-
-
-
-
-
 });
