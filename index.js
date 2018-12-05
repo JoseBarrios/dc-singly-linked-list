@@ -80,6 +80,16 @@ class SinglyLinkedListDataController extends ThingDataController{
     lastNode.next = node;
   }
 
+  delete(data) {
+    const index = this.getIndexOfData(data);
+    let prev = this.getNodeAtIndex(index - 1);
+    let target = this.getNodeAtIndex(index);
+    let newNext = target.next;
+    prev.next = newNext;
+    target.next = null;
+    return target;
+  }
+
   deleteAtIndex(index) {
     let prev = this.getNodeAtIndex(index - 1);
     let target = this.getNodeAtIndex(index);
@@ -89,7 +99,7 @@ class SinglyLinkedListDataController extends ThingDataController{
     return target;
   }
 
-  search(targetData) {
+  getNode(targetData) {
 
     if(!this.head) return null;
 
@@ -108,6 +118,27 @@ class SinglyLinkedListDataController extends ThingDataController{
     }
     return targetNode;
   }
+
+  has(targetData) {
+
+    if(!this.head) return false;
+
+    if (ThingDataController.lodash.isEqual(this.head.data, targetData)) {
+      return true;
+    }
+
+    let result = false;
+    let currentNode = this.head;
+    while (currentNode.next) {
+      currentNode = currentNode.next;
+      if (ThingDataController.lodash.isEqual(currentNode.data, targetData)) {
+        result = true;
+        break;
+      }
+    }
+    return result;
+  }
+
 
   //HELPERS
   getLastNode() {
@@ -144,6 +175,8 @@ class SinglyLinkedListDataController extends ThingDataController{
     return currentNode;
   }
 
+
+
   get isCircular() {
     let isCyclical = false;
     let slowWalker = this.head;
@@ -162,19 +195,47 @@ class SinglyLinkedListDataController extends ThingDataController{
 
   //Maybe merge with search?
   getIndexOfNode(node) {
+    if(!this.head) return null;
+
     let index = 0;
+    if (ThingDataController.lodash.isEqual(this.head, node)) {
+      return index;
+    }
+
     let result = null;
     let currentNode = this.head;
     while (currentNode.next) {
       index++;
       currentNode = currentNode.next;
-      if (currentNode === node) {
+      if (ThingDataController.lodash.isEqual(currentNode, node)) {
         result = index;
         break;
       }
     }
     return result;
   }
+
+  getIndexOfData(data) {
+    if(!this.head) return null
+
+    let index = 0;
+    if (ThingDataController.lodash.isEqual(this.head.data, data)) {
+      return index;
+    }
+
+    let result = null;
+    let currentNode = this.head;
+    while (currentNode.next) {
+      index++;
+      currentNode = currentNode.next;
+      if (ThingDataController.lodash.isEqual(currentNode.data, data)) {
+        result = index;
+        break;
+      }
+    }
+    return result;
+  }
+
 }
 
 module.exports = SinglyLinkedListDataController;
