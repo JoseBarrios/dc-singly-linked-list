@@ -27,15 +27,12 @@ describe("SinglyLinkedList", function () {
   describe("#search()", function () {
     it("should get the node with the indicated value", function () {
       let list = new SinglyLinkedList()
-      list.insert(0);
-      list.insert(1);
+      list.insert({complexData: true});
+      list.insert("one");
       list.insert(2);
-      list.insert(3);
-
-      assert.deepStrictEqual(list.search(0), list.getNodeAtIndex(0));
-      assert.deepStrictEqual(list.search(1), list.getNodeAtIndex(1));
-      assert.deepStrictEqual(list.search(2), list.getNodeAtIndex(2));
-      assert.deepStrictEqual(list.search(3), list.getNodeAtIndex(3));
+      assert.deepStrictEqual(list.search({complexData:true}), list.getNodeAtIndex(0));
+      assert.deepStrictEqual(list.search("one"), list.getNodeAtIndex(1));
+      assert.equal(list.search(2), list.getNodeAtIndex(2));
     });
   });
 

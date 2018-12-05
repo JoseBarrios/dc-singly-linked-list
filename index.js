@@ -90,15 +90,16 @@ class SinglyLinkedListDataController extends ThingDataController{
   }
 
   search(targetData) {
+
     let targetNode = null;
-    if (this.head && this.head.data === targetData) {
+    if (this.head && ThingDataController.lodash.isEqual(this.head.data, targetData)) {
       return this.head;
     }
 
     let currentNode = this.head;
     while (currentNode.next) {
       currentNode = currentNode.next;
-      if (currentNode.data === targetData) {
+      if (ThingDataController.lodash.isEqual(currentNode.data, targetData)) {
         targetNode = currentNode;
         break;
       }
