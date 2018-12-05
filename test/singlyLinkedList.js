@@ -8,7 +8,7 @@ describe("SinglyLinkedList", function () {
   describe("constructor", function () {
     it("should create a linked list from an array", function () {
       let list = new SinglyLinkedList([0, 1, 2, 3, 4])
-      assert.deepStrictEqual(list.adjacencyList, [0, "3", "4", "5", "6"]);
+      assert.deepStrictEqual(list.adjacencyList, [0, 1, 2, 3, 4]);
     });
   });
 
@@ -88,7 +88,6 @@ describe("SinglyLinkedList", function () {
     });
   });
 
-
   describe("list.size", function () {
     it("should return number of nodes in the list", function () {
       let list = new SinglyLinkedList()
@@ -114,15 +113,15 @@ describe("SinglyLinkedList", function () {
   describe("list.adjacencyList", function () {
     it("should return an array representation of the list", function () {
       let list = new SinglyLinkedList()
-      const data1 = {identifier:1, data: "one"};
-      const data2 = {identifier:2, data: "two"};
-      const data3 = {identifier:3, data: "three"};
-      const data4 = {identifier:4, data: "four"};
+      const data1 = {"one":1};
+      const data2 = {"two":2};
+      const data3 = {"three":3};
+      const data4 = {"four":4};
       list.insert(data1);
       list.insert(data2);
       list.insert(data3);
       list.insert(data4);
-      assert.deepStrictEqual(list.adjacencyList, [list.head.data, 2, 3, 4]);
+      assert.deepStrictEqual(list.adjacencyList, [data1, data2, data3, data4]);
     });
   });
 });

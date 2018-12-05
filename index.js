@@ -4,13 +4,11 @@ const ThingDataController = require("dc-thing");
 
 class SinglyLinkedListNodeDataController extends ThingDataController {
 
-  constructor(model){
-    super(model);
+  constructor(data){
+    super();
     this.type = "singly-linked-list-node";
-
-    const isPlainObject = ThingDataController.isPlainObject(model);
     this._next = new WeakMap();
-    this.data = isPlainObject? model.data : model;
+    this.data = data;
   }
 
   get next(){ return this._next.get(this); }
@@ -28,11 +26,13 @@ class SinglyLinkedListDataController extends ThingDataController{
 
   get adjacencyList() {
     const nodes = [];
+    if(this.head){
+      nodes.push(this.head.data);
+    }
     let currentNode = this.head;
-    nodes.push(currentNode.data);
     while (currentNode.next) {
       currentNode = currentNode.next;
-      nodes.push(currentNode.identifier);
+      nodes.push(currentNode.data);
     }
     return nodes;
   }
@@ -173,11 +173,6 @@ class SinglyLinkedListDataController extends ThingDataController{
     return result;
   }
 }
-
-
-
-
-
 
 module.exports = SinglyLinkedListDataController;
 
