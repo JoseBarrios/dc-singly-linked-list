@@ -26,9 +26,9 @@ class SinglyLinkedListDataController extends ThingDataController{
 
   get adjacencyList() {
     const nodes = [];
-    if(this.head){
-      nodes.push(this.head.data);
-    }
+    if(!this.head) return nodes;
+
+    nodes.push(this.head.data);
     let currentNode = this.head;
     while (currentNode.next) {
       currentNode = currentNode.next;

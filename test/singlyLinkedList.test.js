@@ -147,6 +147,7 @@ describe("SinglyLinkedList", function () {
   describe("list.adjacencyList", function () {
     it("should return an array representation of the list", function () {
       let list = new SinglyLinkedList()
+      assert.deepStrictEqual(list.adjacencyList, []);
       const data1 = {"one":1};
       const data2 = {"two":2};
       const data3 = {"three":3};
