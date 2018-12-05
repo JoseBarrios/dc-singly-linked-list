@@ -81,13 +81,17 @@ class SinglyLinkedListDataController extends ThingDataController{
   }
 
   delete(data) {
-    const index = this.getIndexOfData(data);
-    let prev = this.getNodeAtIndex(index - 1);
-    let target = this.getNodeAtIndex(index);
-    let newNext = target.next;
-    prev.next = newNext;
-    target.next = null;
-    return target;
+    if(ThingDataController.lodash.isEqual(this.head.data, data)){
+      this.head = null;
+    }
+    else{
+      const index = this.getIndexOfData(data);
+      let prev = this.getNodeAtIndex(index - 1);
+      let target = this.getNodeAtIndex(index);
+      let newNext = target.next;
+      prev.next = newNext;
+      target.next = null;
+    }
   }
 
   deleteAtIndex(index) {
@@ -226,8 +230,8 @@ class SinglyLinkedListDataController extends ThingDataController{
     let result = null;
     let currentNode = this.head;
     while (currentNode.next) {
-      index++;
       currentNode = currentNode.next;
+      index++;
       if (ThingDataController.lodash.isEqual(currentNode.data, data)) {
         result = index;
         break;

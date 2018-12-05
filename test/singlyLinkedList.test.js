@@ -62,6 +62,20 @@ describe("SinglyLinkedList", function () {
     });
   });
 
+  describe("#getIndexOfData()", function () {
+    it("should get the node at the indicated index", function () {
+      let list = new SinglyLinkedList()
+      list.insert(0);
+      assert.equal(list.getIndexOfData(0), 0);
+      list.insert("one");
+      assert.equal(list.getIndexOfData("one"), 1);
+      list.insert({two:"dos"});
+      assert.equal(list.getIndexOfData({two:"dos"}), 2);
+
+    });
+  });
+
+
 
   describe("#deleteAtIndex()", function () {
     it("should delete the node with the indicated index", function () {
@@ -74,12 +88,13 @@ describe("SinglyLinkedList", function () {
 
   describe("#delete(data)", function () {
     it("should delete the node with the indicated index", function () {
-      let list = new SinglyLinkedList([0, 1, 2, 3, 4])
-      assert.equal(list.size, 5);
-      assert.equal(list.has(2), true)
-      list.delete(2);
-      assert.equal(list.size, 4);
-      assert.equal(list.has(2), false)
+      let list = new SinglyLinkedList()
+      assert.equal(list.size, 0);
+      assert.equal(list.has(1), false)
+      list.insert(1);
+      assert.equal(list.has(1), true)
+      list.delete(1);
+      assert.equal(list.has(1), false)
     });
   });
 
