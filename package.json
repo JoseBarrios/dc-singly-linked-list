@@ -26,5 +26,5 @@
         "test": "./node_modules/mocha/bin/mocha test/",
         "browser": "./node_modules/webpack/bin/webpack.js"
     },
-    "version": "0.1.1"
+    "version": "0.2.0"
 }
