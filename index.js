@@ -2,6 +2,9 @@
 
 const ThingDataController = require("dc-thing");
 
+//////////////////////
+// HELPER NODE CLASS
+//////////////////////
 class SinglyLinkedListNodeDataController extends ThingDataController {
 
   constructor(data){
@@ -14,6 +17,7 @@ class SinglyLinkedListNodeDataController extends ThingDataController {
   get next(){ return this._next.get(this); }
   set next(node){ this._next.set(this, node); }
 }
+
 
 class SinglyLinkedListDataController extends ThingDataController{
 
@@ -143,8 +147,10 @@ class SinglyLinkedListDataController extends ThingDataController{
     return result;
   }
 
-
+  //////////
   //HELPERS
+  //////////
+
   getLastNode() {
     let currentNode = this.head;
     while (currentNode.next) {
@@ -178,8 +184,6 @@ class SinglyLinkedListDataController extends ThingDataController{
     }
     return currentNode;
   }
-
-
 
   get isCircular() {
     let isCyclical = false;
@@ -239,8 +243,8 @@ class SinglyLinkedListDataController extends ThingDataController{
     }
     return result;
   }
-
 }
+
 
 module.exports = SinglyLinkedListDataController;
 
