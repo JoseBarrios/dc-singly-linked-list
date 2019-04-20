@@ -90,6 +90,8 @@ describe("SinglyLinkedList", function () {
     it("should delete the node with the indicated index", function () {
       let list = new SinglyLinkedList()
       assert.equal(list.size, 0);
+      list.delete("non-existant");
+      assert.equal(list.size, 0);
       assert.equal(list.has(1), false)
       list.insert(1);
       assert.equal(list.has(1), true)

@@ -85,11 +85,12 @@ class SinglyLinkedListDataController extends ThingDataController{
   }
 
   delete(data) {
-    if(ThingDataController.lodash.isEqual(this.head.data, data)){
+    if(this.head && ThingDataController.lodash.isEqual(this.head.data, data)){
       this.head = null;
     }
     else{
       const index = this.getIndexOfData(data);
+      if(index === null) return;//cannot delete something that's not there
       let prev = this.getNodeAtIndex(index - 1);
       let target = this.getNodeAtIndex(index);
       let newNext = target.next;
