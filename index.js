@@ -99,6 +99,15 @@ class SinglyLinkedListDataController extends ThingDataController{
     }
   }
 
+  replaceData(oldValue, newValue){
+    if(!oldValue || !newValue) return;
+    const node = this.getNode(oldValue);
+    if(node){
+      node.data = newValue;
+      return node;
+    }
+  }
+
   deleteAtIndex(index) {
     let prev = this.getNodeAtIndex(index - 1);
     let target = this.getNodeAtIndex(index);
@@ -109,7 +118,6 @@ class SinglyLinkedListDataController extends ThingDataController{
   }
 
   getNode(targetData) {
-
     if(!this.head) return null;
 
     if (ThingDataController.lodash.isEqual(this.head.data, targetData)) {

@@ -114,6 +114,23 @@ describe("SinglyLinkedList", function () {
     });
   });
 
+  describe("#replaceData(old, new)", function () {
+    it("should replaceData the old node with the new one", function () {
+      let list = new SinglyLinkedList([0, 1, 2, 3, 4, {complex:5}])
+      list.replaceData(2, 22);
+      assert.deepStrictEqual(list.getIndexOfData(22), 2);
+      assert.deepStrictEqual(list.getIndexOfData(22), 2);
+      list.replaceData(22);
+      assert.deepStrictEqual(list.getIndexOfData(22), 2);
+      list.replaceData();
+      assert.deepStrictEqual(list.getIndexOfData(22), 2);
+      list.replaceData("nonexitant", -1);
+      assert.deepStrictEqual(list.getIndexOfData(22), 2);
+      list.replaceData({complex:5}, {simple:5});
+      assert.deepStrictEqual(list.getIndexOfData({simple:5}), 5);
+    });
+  });
+
   describe("list.isCircular", function () {
     it("should return true if theres a cyclical dependency", function () {
       let list = new SinglyLinkedList([0, 1, 2, 3, 4, 5, 6, 7])
